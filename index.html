@@ -2,19 +2,21 @@
 <html>
 
 <head>
-    <title>Il nostro giorno speciale</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anna & Andrea</title>
 
     <style>
         body {
-            background-color: #f8f8f8;
-            font-family: Arial, sans-serif;
+            background-color: #719584;
+            font-family: 'georgia', serif;
             margin: 0;
         }
 
         .container {
-            padding-top: 3rem;
+            background-color: #fdf4f4;
             width: 80%;
-            margin: 0 auto;
+            margin: 2rem auto;
+            border-radius: 10px;
         }
 
         .card {
@@ -25,11 +27,15 @@
         }
 
         .card-img-top {
-            height: 300px;
-            object-fit: cover;
-            display: block;
-            margin: 0 auto;
+            display: none;
+        }
+
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
         }
 
         .card-body {
@@ -45,11 +51,26 @@
         .card-text {
             font-size: 16px;
             margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
 
         .btn {
-            background-color: #ff6600;
-            color: #fff;
+            background-color: #ff8383;
+            color: #ffffff;
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
@@ -61,22 +82,70 @@
             width: 20%;
             height: 2rem;
             line-height: 30px;
+            text-decoration: none;
+        }
+
+        .iban {
+            font-size: 16px;
+            margin-bottom: 10px;
+            line-height: 1.5;
+            border: none;
+            cursor: pointer;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+
+        .iban:hover {
+            background-color: #ededed;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            max-width: 300px;
+            background-color: #aceeff;
+            color: black;
+            padding: 15px;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            text-align: center;
+        }
+
+        .toast.show {
+            opacity: 1;
         }
 
         .btn:hover {
-            background-color: #ff8033;
+            background-color: #ff5555;
         }
 
         @media (max-width: 768px) {
             .btn {
-                font-size: 30px;
-                padding: 15px 30px;
-                height: 30%;
+                font-size: 16px;
+                padding: 15px 20px;
+                width: 40%;
+                height: auto;
+                line-height: normal;
+            }
+
+            .iban {
+                font-size: 16px;
             }
 
             .card-title,
             .card-text {
-                font-size: 18px;
+                font-size: 16px;
+            }
+
+            .container {
+                width: 80%;
+            }
+
+            .toast {
+                bottom: 10px;
+                right: 10px;
             }
         }
     </style>
@@ -85,25 +154,51 @@
 <body>
     <div class="container">
         <div class="card">
-            <img src="foto.jpg" class="card-img-top" alt="">
+            <div class="video-container">
+                <iframe width="560" height="315"
+                    src="https://www.youtube.com/embed/FSJ5hG-n8rM?si=XcJv55LPaUKKdXrs&autoplay=1&mute=1&start=0&rel=0"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
             <div class="card-body">
                 <h2 class="card-title">Vi invitiamo al nostro matrimonio!</h2>
-                <p class="card-text">Siamo entusiasti di condividere con voi il nostro giorno speciale. Vi aspettiamo il
-                    <b>06/06/2025</b> alle <b>14:30</b> presso <b>Villa Ca' Sagredo, Conselve</b>.
+                <p class="card-text">Siamo entusiasti di condividere con voi il nostro giorno speciale, </p>
+                <p class="card-text">
+                    vi aspettiamo il <b>06/06/2025</b> alle <b>14:30</b> presso <b>Villa Ca' Sagredo Conselve</b>, vi
+                    preghiamo di confermare la vostra presenza entro il [INSERIRE DATA] inviando una mail a <a
+                        href="mailto:anna.fattoni@gmail.com">anna.fattoni@gmail.com</a>.
                 </p>
-                <p class="card-text">Vi preghiamo di confermare la vostra presenza entro il inviando una e-mail a <a
-                        href="mailto:anna.fattoni@gmail.com">anna.fattoni@gmail.com</a>.</p>
                 <p class="card-text">Non vediamo l'ora di festeggiare con voi!</p>
-                <p class="card-text">Con affetto, Anna e Andrea</p>
-                <p class="card-text">Se vi fa piacere, un piccolo aiuto da parte vostra renderà il viaggio di nozze
-                    ancora più indimenticabile</p>
-                <p class="card-text">IBAN:<b> IT0000000000000000000</b></p>
+                <p class="card-text">Con affetto, Anna e Andrea.</p>
+                <p class="card-text">Se vi fa piacere, un piccolo aiuto da parte vostra render&agrave; il viaggio di
+                    nozze
+                    ancora pi&ugrave; indimenticabile.</p>
+                <p class="card-text">IBAN:<button onclick="copyText()" class="iban">IT0000000000000000000</button></p>
+                <div id="toast" class="toast">IBAN copiato!</div>
 
                 <a href="https://www.google.it/maps/place/Villa+Ca'+Sagredo+Toderini,+Conselve/@45.2279549,11.8788214,613m/data=!3m1!1e3!4m13!1m2!2m1!1sca+sagredo+conselve!3m9!1s0x477ee8959edf6f57:0x31eede527e0ed271!5m2!4m1!1i2!8m2!3d45.2279779!4d11.8813528!15sChNjYSBzYWdyZWRvIGNvbnNlbHZlWhUiE2NhIHNhZ3JlZG8gY29uc2VsdmWSARZzZXJ2aWNlZF9hY2NvbW1vZGF0aW9u4AEA!16s%2Fg%2F1td2l9y_?entry=ttu&g_ep=EgoyMDI0MDkxOC4xIKXMDSoASAFQAw%3D%3D"
                     class="btn">Indicazioni stradali</a>
             </div>
         </div>
     </div>
+
+    <script>
+        function copyText() {
+            navigator.clipboard.writeText("IT0000000000000000000")
+                .then(() => {
+                    const toast = document.getElementById('toast');
+                    toast.classList.add('show');
+                    setTimeout(() => {
+                        toast.classList.remove('show');
+                    }, 2000); // Nasconde il toast dopo 2 secondi
+                })
+                .catch(err => {
+                    console.error('Errore durante la copia:', err);
+                });
+        }
+    </script>
+
 </body>
 
 </html>
