@@ -6,14 +6,23 @@
 <body>
     <script>
         window.onload = function() {
-            // Confetti di base senza immagine
-            confetti();
-
-            // Confetti al centro
             confetti({
+                spread: 360,
+                ticks: 200,
+                gravity: 1,
+                decay: 0.94,
+                startVelocity: 30,
                 particleCount: 100,
-                spread: 70,
-                origin: { x: 0.5, y: 0.5 }
+                scalar: 3,
+                origin: { x: 0.5, y: 0.5 },
+                shapes: ['image'],
+                shapesOptions: {
+                    image: [{
+                        src: './foto.png',
+                        width: 50,
+                        height: 50
+                    }]
+                }
             });
         }
     </script>
