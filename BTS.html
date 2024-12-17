@@ -6,38 +6,24 @@
 <body>
     <script>
         window.onload = function() {
-            const img = new Image();
-            img.onload = function() {
-                console.log('Immagine caricata');
-                console.log('Dimensioni immagine:', img.width, 'x', img.height);
-                console.log('Tipo immagine:', img.src);
-
-                try {
-                    const result = confetti({
-                        spread: 360,
-                        particleCount: 100,
-                        scalar: 3,
-                        origin: { x: 0.5, y: 0.5 },
-                        shapes: ['image'],
-                        shapesOptions: {
-                            image: [
-                                {
-                                    src: img.src,
-                                    width: 50,
-                                    height: 50
-                                }
-                            ]
-                        }
-                    });
-                    console.log('Confetti result:', result);
-                } catch (error) {
-                    console.error('Errore confetti:', error);
+            confetti({
+                spread: 360,
+                ticks: 200,
+                gravity: 1,
+                decay: 0.94,
+                startVelocity: 30,
+                particleCount: 100,
+                scalar: 3,
+                origin: { x: 0.5, y: 0.5 },
+                shapes: ['image'],
+                shapesOptions: {
+                    image: [{
+                        src: 'https://gintoni.github.io/foto.png',
+                        width: 50,
+                        height: 50
+                    }]
                 }
-            };
-            img.onerror = function() {
-                console.error('Errore caricamento immagine');
-            };
-            img.src = './foto.png';
+            });
         }
     </script>
 </body>
