@@ -1,45 +1,29 @@
 <html>
-<a href="BTS.html" title="BTS"></a>
-
-<body>
+<head>
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+</head>
+<body>
     <script>
         window.onload = function () {
-            const duration = 3 * 1000,
-                animationEnd = Date.now() + duration,
-                defaults = { startVelocity: 20, spread: 360, ticks: 60, zIndex: 0 };
-
-            function randomInRange(min, max) {
-                return Math.random() * (max - min) + min;
-            }
-
-            const interval = setInterval(function () {
-                const timeLeft = animationEnd - Date.now();
-
-                if (timeLeft <= 0) {
-                    return clearInterval(interval);
-                }
-              
-                // Center image confetti
-                confetti({
-                    spread: 360,
-                    ticks: 200,
-                    gravity: 1,
-                    decay: 0.94,
-                    startVelocity: 30,
-                    particleCount: 100,
-                    scalar: 3,
-                    origin: { x: 0.5, y: 0.5 },  // Center of the screen
-                    shapes: ['image'],
-                    images: [{
-                        src: 'foto.png',  // Relative path to your image
+            confetti({
+                spread: 360,
+                ticks: 200,
+                gravity: 1,
+                decay: 0.94,
+                startVelocity: 30,
+                particleCount: 100,
+                scalar: 3,
+                origin: { x: 0.5, y: 0.5 },  // Center of the screen
+                shapes: ['image'],
+                shapesOptions: {
+                    image: [{
+                        src: 'foto.png',
                         width: 50,
                         height: 50
                     }]
-                });
-
-            }, 250);
+                }
+            });
         };
     </script>
-</body >
-</html >
+</body>
+</html>
