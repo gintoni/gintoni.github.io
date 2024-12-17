@@ -4,38 +4,44 @@
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
 </head>
 <body>
-    <!-- Aggiungiamo l'immagine per verificare che sia visibile -->
-    <img src="./foto.png" alt="Test Image" style="display:block; margin:0 auto;">
-
     <script>
         window.onload = function() {
-            // Log per debugging
-            console.log('Caricamento confetti');
-            
-            // Debugging del percorso dell'immagine
-            const img = new Image();
-            img.onload = () => console.log('Immagine caricata correttamente');
-            img.onerror = () => console.error('Errore caricamento immagine');
-            img.src = './foto.png';
+            // Prova con configurazione base
+            confetti({
+                spread: 360,
+                particleCount: 100,
+                scalar: 3,
+                origin: { x: 0.5, y: 0.5 },
+                shapes: ['square', 'circle']  // Forme base
+            });
 
-            // Tentativo confetti
-            try {
-                confetti({
-                    spread: 360,
-                    particleCount: 100,
-                    origin: { x: 0.5, y: 0.5 },
-                    shapes: ['image'],
-                    shapesOptions: {
-                        image: [{
-                            src: './foto.png',
-                            width: 50,
-                            height: 50
-                        }]
-                    }
-                });
-            } catch (error) {
-                console.error('Errore confetti:', error);
-            }
+            // Prova separata con immagine
+            const img = new Image();
+            img.onload = function() {
+                console.log('Immagine caricata, tentativo confetti');
+                try {
+                    confetti({
+                        spread: 360,
+                        particleCount: 100,
+                        scalar: 3,
+                        origin: { x: 0.5, y: 0.5 },
+                        shapes: ['image'],
+                        shapesOptions: {
+                            image: [{
+                                src: './foto.png',
+                                width: img.width,
+                                height: img.height
+                            }]
+                        }
+                    });
+                } catch (error) {
+                    console.error('Errore confetti con immagine:', error);
+                }
+            };
+            img.onerror = function() {
+                console.error('Errore caricamento immagine');
+            };
+            img.src = './foto.png';
         }
     </script>
 </body>
