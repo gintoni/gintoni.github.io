@@ -1,48 +1,60 @@
-<!DOCTYPE html>
 <html>
-<head>
-    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
-</head>
+
 <body>
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
     <script>
-        window.onload = function() {
-            confetti({
-                spread: 360,
-                ticks: 200,
-                gravity: 1,
-                decay: 0.94,
-                startVelocity: 30,
-                particleCount: 100,
-                scalar: 3,
-                origin: { x: 0.5, y: 0.5 },
-                shapes: ['image'],
-                shapesOptions: {
-                    image: [
-                        {
-                            src: 'https://gintoni.github.io/anna1.png',
-                            width: 50,
-                            height: 50,
-                        },
-                        {
-                            src: 'https://gintoni.github.io/andrea1.png',
+        window.onload = function () {
+            const duration = 3 * 1000,
+                animationEnd = Date.now() + duration,
+                defaults = { startVelocity: 20, spread: 360, ticks: 60, zIndex: 0 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            const interval = setInterval(function () {
+                const timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                confetti({
+                    spread: 360,
+                    ticks: 200,
+                    gravity: 1,
+                    decay: 0.94,
+                    startVelocity: 30,
+                    particleCount: 100,
+                    scalar: 3,
+                    shapes: ["image"],
+                    shapeOptions: {
+                        image: [{
+                            src: "https://gintoni.github.io/anna1.png",
                             width: 32,
                             height: 32,
                         },
                         {
-                            src: 'https://gintoni.github.io/anna2.png',
+                            src: "https://gintoni.github.io/andrea1.png",
                             width: 32,
                             height: 32,
                         },
                         {
-                            src: 'https://gintoni.github.io/andrea2.png',
+                            src: "https://gintoni.github.io/anna2.png",
+                            width: 32,
+                            height: 32,
+                        },
+                        {
+                            src: "https://gintoni.github.io/andrea2.png",
                             width: 32,
                             height: 32,
                         },
                         
-                    ]
-                }
-            });
-        }
+                        ],
+                    },
+                });
+
+            }, 250);
+        };
     </script>
 </body>
-</html>
