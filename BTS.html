@@ -6,36 +6,32 @@
 <body>
     <script>
         window.onload = function() {
-            // Prova con configurazione base
-            confetti({
-                spread: 360,
-                particleCount: 100,
-                scalar: 3,
-                origin: { x: 0.5, y: 0.5 },
-                shapes: ['square', 'circle']  // Forme base
-            });
-
-            // Prova separata con immagine
             const img = new Image();
             img.onload = function() {
-                console.log('Immagine caricata, tentativo confetti');
+                console.log('Immagine caricata');
+                console.log('Dimensioni immagine:', img.width, 'x', img.height);
+                console.log('Tipo immagine:', img.src);
+
                 try {
-                    confetti({
+                    const result = confetti({
                         spread: 360,
                         particleCount: 100,
                         scalar: 3,
                         origin: { x: 0.5, y: 0.5 },
                         shapes: ['image'],
                         shapesOptions: {
-                            image: [{
-                                src: './foto.png',
-                                width: img.width,
-                                height: img.height
-                            }]
+                            image: [
+                                {
+                                    src: img.src,
+                                    width: 50,
+                                    height: 50
+                                }
+                            ]
                         }
                     });
+                    console.log('Confetti result:', result);
                 } catch (error) {
-                    console.error('Errore confetti con immagine:', error);
+                    console.error('Errore confetti:', error);
                 }
             };
             img.onerror = function() {
