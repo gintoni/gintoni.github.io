@@ -1,9 +1,11 @@
 <html>
-
+<head>
+  <title>Confetti Personalizzati</title>
+</head>
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
-    <script>
-        window.onload = function () {
+  <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+  <script>
+    window.onload = function () {
       const duration = 15 * 1000,
         animationEnd = Date.now() + duration;
 
@@ -20,17 +22,22 @@
         skew = Math.max(0.8, skew - 0.001);
 
         confetti({
-          particleCount: 1,
+          particleCount: 0.2, // Ridotto da 0.5 a 0.2 per meno confetti
           startVelocity: 0,
           ticks: ticks,
           origin: {
             x: Math.random(),
-            // since particles fall down, skew start toward the top
             y: Math.random() * skew - 0.2,
           },
           gravity: randomInRange(0.4, 0.6),
-          scalar: randomInRange(0.4, 8),
-          drift: randomInRange(-0.4, 0.4),
+          scalar: randomInRange(0.4, 10),
+          drift: randomInRange(-0.2, 0.2),
+          rotation: { // Aggiunto controllo di rotazione
+            min: 0,
+            max: 360,
+            enable: true,
+            speed: 2 // Rallenta la velocità di rotazione
+          },
           shapes: ["image"],
           shapeOptions: {
             image: [{
@@ -52,9 +59,7 @@
               src: "https://gintoni.github.io/andrea2.png",
               width: 32,
               height: 32,
-            },
-
-            ],
+            }],
           },
         });
 
@@ -63,5 +68,6 @@
         }
       })();
     };
-    </script>
+  </script>
 </body>
+</html>
